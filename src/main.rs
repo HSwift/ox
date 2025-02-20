@@ -49,7 +49,7 @@ fn main() {
 
     // Activate configuration assistant if applicable
     let no_config = Config::get_user_provided_config(&cli.config_path).is_none();
-    if no_config || cli.flags.config_assist {
+    if cli.flags.config_assist {
         if let Err(err) = Assistant::run(no_config) {
             panic!("{err:?}");
         }

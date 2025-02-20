@@ -30,6 +30,7 @@ fn issue_warning(msg: &str) {
 
 /// This contains the default configuration lua file
 const DEFAULT_CONFIG: &str = include_str!("../../config/.oxrc");
+const PERSONAL_CONFIG: &str = include_str!("../../config/my_personal_config.oxrc");
 
 /// Default plug-in code to use
 const PAIRS: &str = include_str!("../../plugins/pairs.lua");
@@ -198,6 +199,7 @@ impl Config {
     pub fn read(path: &str, lua: &Lua) -> Result<()> {
         // Load the default config to start with
         lua.load(DEFAULT_CONFIG).exec()?;
+        lua.load(PERSONAL_CONFIG).exec()?;
 
         // Attempt to read config file from home directory
         let user_provided = Self::get_user_provided_config(path);
